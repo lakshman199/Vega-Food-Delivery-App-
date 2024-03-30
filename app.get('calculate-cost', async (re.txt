@@ -1,0 +1,20 @@
+app.get('/calculate-cost', async (req, res) => {
+ const distance = req.query.distance; // Distance obtained from the distance calculation endpoint
+ const itemType = req.query.itemType; // Type of food item
+ const zone = req.query.zone; // Delivery zone
+
+ // Example pricing rules
+ let baseCost = 0;
+ if (zone === 'inner') {
+    baseCost = parseFloat(distance) * 1; // $1 per km for inner zone
+ } else if (zone === 'outer') {
+    baseCost = parseFloat(distance) * 2; // $2 per km for outer zone
+ }
+
+ // Additional cost based on item type
+ if (itemType === 'fastFood') {
+    baseCost += 2; // Additional $2 for fast food items
+ }
+
+ res.json({ cost: baseCost.toFixed(2) });
+});

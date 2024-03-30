@@ -1,0 +1,3 @@
+mkdir food-delivery-api
+cd food-delivery-api
+npm init -y
